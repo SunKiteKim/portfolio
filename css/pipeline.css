@@ -466,4 +466,10 @@ h2 {
 @media (max-width: 800px) {
   .intro, .split, .builds, .choose { grid-template-columns: 1fr; }
   .page-rail { left: 8px; }
+  .gate { padding-bottom: 28px; }
+  .explore {
+    position: static;
+    transform: none;
+    margin: 36px auto 0;
+  }
 }
