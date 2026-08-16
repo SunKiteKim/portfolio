@@ -1,0 +1,409 @@
+:root {
+  --bg: #070908;
+  --bg-panel: #0c100d;
+  --bg-elevated: #111814;
+  --line: #243328;
+  --text: #d7ead9;
+  --muted: #7d8f80;
+  --dim: #55665a;
+  --green: #5dff8a;
+  --green-dim: #2f8f4f;
+  --amber: #e8b84a;
+  --red: #ff6b6b;
+  --cyan: #6ee7d8;
+  --shadow: 0 0 0 1px var(--line);
+  --font: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --max: 920px;
+}
+
+[data-phosphor="amber"] {
+  --green: #f0c14b;
+  --green-dim: #9a7420;
+  --text: #f3e6c0;
+  --muted: #a89468;
+  --dim: #6f6244;
+  --cyan: #f0c14b;
+  --bg: #0a0906;
+  --bg-panel: #12100a;
+  --bg-elevated: #1a160c;
+  --line: #3a3220;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.crt {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0),
+      rgb(0 0 0 / 0) 2px,
+      rgb(0 0 0 / 0.08) 3px
+    );
+  mix-blend-mode: multiply;
+}
+
+.topbar,
+.statusbar {
+  position: sticky;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 18px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.topbar {
+  top: 0;
+  flex-wrap: wrap;
+}
+
+.topbar__left,
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar__title {
+  color: var(--muted);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot--red { background: #ff5f57; }
+.dot--amber { background: #febc2e; }
+.dot--green { background: #28c840; }
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-left: auto;
+}
+
+.nav a {
+  color: var(--muted);
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  color: var(--green);
+}
+
+.topbar__right {
+  margin-left: 8px;
+  color: var(--dim);
+}
+
+.ghost,
+.btn {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  padding: 6px 10px;
+}
+
+.ghost {
+  border-color: transparent;
+}
+
+.ghost:hover,
+.btn:hover {
+  color: var(--green);
+  border-color: var(--green-dim);
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 14px;
+  color: var(--bg);
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.btn--ghost {
+  color: var(--green);
+  background: transparent;
+}
+
+.shell {
+  width: min(var(--max), calc(100% - 32px));
+  margin: 28px auto 72px;
+  display: grid;
+  gap: 18px;
+}
+
+.panel {
+  background: var(--bg-panel);
+  box-shadow: var(--shadow);
+  padding: 22px 22px 24px;
+}
+
+.hero h1 {
+  margin: 6px 0 4px;
+  font-size: clamp(28px, 6vw, 44px);
+  letter-spacing: -0.03em;
+  color: var(--green);
+  text-shadow: 0 0 18px rgb(93 255 138 / 0.18);
+}
+
+.role,
+.mission,
+.readme p,
+.hint,
+.case__meta {
+  color: var(--muted);
+}
+
+.mission em,
+.readme strong {
+  color: var(--text);
+  font-style: normal;
+}
+
+.prompt {
+  margin: 16px 0 8px;
+  color: var(--dim);
+}
+
+.who { color: var(--green); }
+.path { color: var(--cyan); }
+
+.log--dim {
+  color: var(--dim);
+  font-size: 12px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 18px;
+}
+
+.status-row,
+.contact,
+.playbook,
+.skills ul,
+.case__body,
+.kv {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.status-row {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.status-row li,
+.contact li,
+.playbook li,
+.case__body li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+}
+
+h2 {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.hash { color: var(--green); }
+
+.hint {
+  font-size: 12px;
+  margin-top: 0;
+}
+
+.kv {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.kv div {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 12px;
+}
+
+.kv dt,
+.k,
+.case__id {
+  color: var(--cyan);
+}
+
+.grid.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.skills article {
+  background: var(--bg-elevated);
+  padding: 14px 14px 16px;
+  border: 1px solid var(--line);
+}
+
+.skills h3 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--green);
+}
+
+.skills li {
+  color: var(--muted);
+}
+
+.skills li::before {
+  content: "› ";
+  color: var(--dim);
+}
+
+.case {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+}
+
+.case header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: baseline;
+}
+
+.case h3 {
+  margin: 0;
+  flex: 1;
+  font-size: 15px;
+}
+
+.case time,
+.case__id {
+  font-size: 12px;
+  color: var(--dim);
+}
+
+.case__meta {
+  margin: 8px 0 10px;
+  font-size: 12px;
+}
+
+.tag {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border: 1px solid currentColor;
+}
+
+.tag--pass { color: var(--green); }
+.tag--info { color: var(--cyan); }
+.tag--warn { color: var(--amber); }
+
+.playbook {
+  display: grid;
+  gap: 8px;
+  counter-reset: none;
+}
+
+.playbook code {
+  color: var(--green);
+}
+
+.contact {
+  display: grid;
+  gap: 8px;
+}
+
+.contact .k {
+  width: 88px;
+}
+
+kbd {
+  border: 1px solid var(--line);
+  padding: 0 5px;
+  color: var(--text);
+  background: var(--bg-elevated);
+}
+
+.statusbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 0;
+  border-top: 1px solid var(--line);
+  color: var(--dim);
+}
+
+.statusbar__grow {
+  margin-left: auto;
+  color: var(--green);
+}
+
+@media (max-width: 720px) {
+  .nav { margin-left: 0; width: 100%; }
+  .topbar__right { margin-left: auto; }
+  .kv div,
+  .contact li { grid-template-columns: 1fr; display: grid; }
+  .statusbar { display: none; }
+  .shell { margin-bottom: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .crt { display: none; }
+}

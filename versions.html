@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>디자인 버전 비교 — QA / QE Portfolio</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/version-bar.css">
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #121821;
+      --line: #243041;
+      --text: #e8eef4;
+      --muted: #8b97a6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    main {
+      width: min(1100px, calc(100% - 32px));
+      margin: 36px auto 64px;
+    }
+    h1 {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(28px, 5vw, 42px);
+      margin: 0 0 8px;
+    }
+    .lead { color: var(--muted); max-width: 62ch; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    a.card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--card);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    a.card:hover { border-color: #5eead4; }
+    .preview { height: 150px; position: relative; }
+    .preview--terminal { background: #070908; }
+    .preview--lab { background: #07131c; }
+    .preview--evidence { background: #f4efe6; }
+    .preview--pipeline { background: #10151c; }
+    .fake {
+      position: absolute;
+      inset: 18px 16px auto;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+    }
+    .preview--terminal .fake { color: #5dff8a; }
+    .preview--lab .fake { color: #5eead4; }
+    .preview--evidence .fake { color: #7c2d12; }
+    .preview--pipeline .fake { color: #93c5fd; }
+    .bar {
+      height: 8px;
+      margin-top: 10px;
+      background: currentColor;
+      opacity: 0.35;
+    }
+    .meta { padding: 14px 16px 16px; }
+    .meta h2 { margin: 0 0 6px; font-size: 16px; }
+    .meta p { margin: 0; color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <nav class="version-bar" aria-label="디자인 버전">
+    <strong>versions</strong>
+    <a class="is-active" href="./versions.html">비교</a>
+    <a href="./terminal.html">Terminal Mono</a>
+    <a href="./lab-dark.html">Lab Dark</a>
+    <a href="./evidence-light.html">Evidence Light</a>
+    <a href="./index.html">Pipeline Dashboard</a>
+  </nav>
+  <main>
+    <h1>디자인 4종</h1>
+    <p class="lead">같은 QA/QE 내용을 네 가지 톤으로 만들었습니다. 카드를 눌러 전체 페이지를 보고, 쓸 버전을 고르면 됩니다.</p>
+    <div class="grid">
+      <a class="card" href="./terminal.html">
+        <div class="preview preview--terminal">
+          <div class="fake">qa@lab:~$ whoami<br>YOUR_NAME<div class="bar"></div></div>
+        </div>
+        <div class="meta">
+          <h2>Terminal Mono</h2>
+          <p>로그·프롬프트. 자동화·스크립팅 강조.</p>
+        </div>
+      </a>
+      <a class="card" href="./lab-dark.html">
+        <div class="preview preview--lab">
+          <div class="fake">SPECIMEN 00<br>Quality Engineering<div class="bar"></div></div>
+        </div>
+        <div class="meta">
+          <h2>Lab Dark</h2>
+          <p>다크 + 시안. 케이스 스터디가 실험 기록처럼 읽힘.</p>
+        </div>
+      </a>
+      <a class="card" href="./evidence-light.html">
+        <div class="preview preview--evidence">
+          <div class="fake">QUALITY REPORT<br>Exhibit A — flake control<div class="bar"></div></div>
+        </div>
+        <div class="meta">
+          <h2>Evidence Light</h2>
+          <p>밝은 문서형. 리포트·감사·증거 중심.</p>
+        </div>
+      </a>
+      <a class="card" href="./index.html">
+        <div class="preview preview--pipeline">
+          <div class="fake">flake 1.1% · gate ON<br>lint → api → e2e → release<div class="bar"></div></div>
+        </div>
+        <div class="meta">
+          <h2>Pipeline Dashboard</h2>
+          <p>CI 콘솔. 메트릭·게이트·잡 카드.</p>
+        </div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

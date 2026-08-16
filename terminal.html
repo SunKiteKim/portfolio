@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terminal Mono — 디자인 샘플</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/version-bar.css">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <nav class="version-bar" aria-label="디자인 버전">
+    <strong>versions</strong>
+    <a href="./versions.html">비교</a>
+    <a class="is-active" href="./terminal.html">Terminal Mono</a>
+    <a href="./lab-dark.html">Lab Dark</a>
+    <a href="./evidence-light.html">Evidence Light</a>
+    <a href="./index.html">Pipeline Dashboard</a>
+  </nav>
+  <div class="crt" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="topbar__left">
+      <span class="dot dot--red" aria-hidden="true"></span>
+      <span class="dot dot--amber" aria-hidden="true"></span>
+      <span class="dot dot--green" aria-hidden="true"></span>
+      <span class="topbar__title">qa@portfolio:~</span>
+    </div>
+    <nav class="nav"><a href="./index.html">본문 포트폴리오 →</a></nav>
+  </header>
+  <main class="shell">
+    <section class="panel">
+      <p class="prompt"><span class="who">qa@lab</span>:<span class="path">~</span>$ cat notice.txt</p>
+      <h1>Terminal Mono 샘플</h1>
+      <p class="mission">실제 포트폴리오는 Pipeline 디자인에 반영되어 있습니다.</p>
+      <p><a class="btn" href="./index.html">cd ~/warranty-qa-kim</a></p>
+    </section>
+  </main>
+  <script src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#061018">
+  <title>Lab Dark — QA / QE Portfolio</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/version-bar.css">
+  <link rel="stylesheet" href="./css/lab-dark.css">
+</head>
+<body>
+  <nav class="version-bar" aria-label="디자인 버전">
+    <strong>versions</strong>
+    <a href="./versions.html">비교</a>
+    <a href="./terminal.html">Terminal Mono</a>
+    <a class="is-active" href="./lab-dark.html">Lab Dark</a>
+    <a href="./evidence-light.html">Evidence Light</a>
+    <a href="./index.html">Pipeline Dashboard</a>
+  </nav>
+
+  <header class="lab-nav">
+    <p class="mark">QE LAB</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#cases">Cases</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">specimen 00 · quality engineering</p>
+      <h1>YOUR_NAME</h1>
+      <p class="role">QA / QE Engineer — 테스트 자동화, 품질 게이트, 재현 가능한 증거</p>
+      <p class="mission">버그를 많이 찾는 사람이 아니라, <em>출시해도 되는지 판단하는 사람</em>. 탐색으로 위험을 찾고, 자동화로 신호를 고정합니다.</p>
+      <div class="actions">
+        <a class="btn" href="#cases">케이스 스터디</a>
+        <a class="btn btn-ghost" href="#contact">연락</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <div class="split">
+        <p>제품이 “동작한다”가 아니라 실패해도 안전한가, 반복해서 믿을 수 있는가를 봅니다. 아래 수치와 케이스는 샘플이니 본인 경험으로 교체하세요.</p>
+        <dl>
+          <div><dt>Focus</dt><dd>API / UI automation, CI gate, flake control</dd></div>
+          <div><dt>Style</dt><dd>증거 먼저 · 재현 먼저 · 메트릭은 맥락과 함께</dd></div>
+          <div><dt>Stack</dt><dd>Playwright · pytest · Postman · GitHub Actions</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="chips">
+        <article>
+          <h3>Test types</h3>
+          <p>Functional · API contract · UI E2E · Exploratory · Performance smoke</p>
+        </article>
+        <article>
+          <h3>Automation</h3>
+          <p>Playwright · Cypress · pytest · REST/GraphQL · test data factories</p>
+        </article>
+        <article>
+          <h3>Quality ops</h3>
+          <p>CI gates · flake quarantine · risk-based plan · release readiness</p>
+        </article>
+        <article>
+          <h3>Observability</h3>
+          <p>Logs · traces · Allure · PR checks · post-release watch</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="cases">
+      <h2>Lab notes</h2>
+      <article class="note">
+        <header><span>LN-01</span><time>2025-11</time><b>PASS</b></header>
+        <h3>flake-rate 12.4% → 1.1%</h3>
+        <p>nightly UI 420 tests. 재시도 남용을 제거하고 quarantine + owner를 지정해 게이트를 다시 켰습니다.</p>
+      </article>
+      <article class="note">
+        <header><span>LN-02</span><time>2025-08</time><b>PASS</b></header>
+        <h3>API contract + regression pack</h3>
+        <p>OpenAPI 계약 검사와 핵심 API 40건으로 스키마 깨짐을 PR에서 차단하고 UI 스위트 18분을 줄였습니다.</p>
+      </article>
+      <article class="note">
+        <header><span>LN-03</span><time>2025-04</time><b>GATE</b></header>
+        <h3>release quality gate</h3>
+        <p>smoke / critical / risk 3단 게이트. 출시 기준을 사람 기억에서 PR 배지로 옮겼습니다.</p>
+      </article>
+      <article class="note">
+        <header><span>LN-04</span><time>2024-12</time><b>BUG</b></header>
+        <h3>결제 재시도 중복 청구</h3>
+        <p>느린 3G + 더블 클릭으로 P1을 재현하고 멱등키와 E2E를 추가했습니다.</p>
+      </article>
+    </section>
+
+    <section id="process">
+      <h2>Process</h2>
+      <ol class="steps">
+        <li><span>01</span> Risk — 무엇이 깨지면 돈이 되나</li>
+        <li><span>02</span> Repro — 재현 안 되면 소문</li>
+        <li><span>03</span> Signal — 자동화로 고정</li>
+        <li><span>04</span> Gate — 파이프라인이 먼저 거절</li>
+        <li><span>05</span> Evidence — 전후 수치를 남김</li>
+      </ol>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <ul class="contact">
+        <li><a href="mailto:you@example.com">you@example.com</a></li>
+        <li><a href="https://github.com/YOUR_GITHUB">github.com/YOUR_GITHUB</a></li>
+        <li><a href="https://www.linkedin.com/in/YOUR_LINKEDIN">linkedin.com/in/YOUR_LINKEDIN</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
