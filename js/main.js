@@ -1,4 +1,9 @@
 (() => {
+  // GA4 Measurement ID (예: G-XXXXXXXXXX). 비우면 GA4를 로드하지 않습니다.
+  const GA_MEASUREMENT_ID = "G-C3CJB3KE4C";
+  // footer visitor 카운터 키 (고유해야 함)
+  const VISITOR_COUNTER_KEY = "sunkitekim-portfolio-visits";
+
   const ids = ["main", "projects", "more-info"];
   const links = [...document.querySelectorAll(".console-bar nav a")];
   const header = document.querySelector(".console-bar");
@@ -42,6 +47,43 @@
     rail?.classList.toggle("is-visible", floated);
     progress();
   };
+
+  const initGA4 = (measurementId) => {
+    if (!measurementId || !/^G-[A-Z0-9]+$/i.test(measurementId)) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag() {
+      window.dataLayer.push(arguments);
+    };
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+    document.head.appendChild(script);
+
+    window.gtag("js", new Date());
+    window.gtag("config", measurementId);
+  };
+
+  const loadVisitorCount = async () => {
+    const el = document.getElementById("visitor-count");
+    if (!el) return;
+
+    try {
+      const res = await fetch(
+        `https://countapi.mileshilliard.com/api/v1/hit/${encodeURIComponent(VISITOR_COUNTER_KEY)}`
+      );
+      if (!res.ok) throw new Error("counter unavailable");
+      const data = await res.json();
+      const value = Number(data.value);
+      el.textContent = Number.isFinite(value) ? value.toLocaleString("en-US") : "—";
+    } catch {
+      el.textContent = "—";
+    }
+  };
+
+  initGA4(GA_MEASUREMENT_ID);
+  loadVisitorCount();
 
   window.addEventListener("scroll", sync, { passive: true });
   window.addEventListener("resize", sync);

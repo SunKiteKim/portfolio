@@ -189,7 +189,7 @@ h2 {
 }
 .tools li { font-family: var(--mono); font-size: 12px; }
 
-.prose { color: var(--muted); max-width: 72ch; }
+.prose { color: var(--muted); max-width: none; }
 .prose p { margin: 0 0 12px; }
 
 .timeline {
@@ -327,9 +327,21 @@ h2 {
   font-family: var(--mono);
   font-size: 12px;
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.site-foot__visitors {
+  font-size: 9px;
+  letter-spacing: 0.02em;
+  color: #2a3544;
+}
+
+.site-foot__visitors b {
+  font-weight: 500;
+  color: inherit;
+  font-variant-numeric: tabular-nums;
 }
 
 .console-bar a.is-active { color: var(--text); }
