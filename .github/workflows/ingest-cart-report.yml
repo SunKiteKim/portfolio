@@ -1,0 +1,74 @@
+name: Ingest cart test report
+
+on:
+  repository_dispatch:
+    types: [cart-test-result]
+  workflow_dispatch:
+    inputs:
+      status:
+        description: pass or fail
+        required: true
+        default: pass
+      title:
+        description: Board title
+        required: false
+      passed:
+        description: Passed count
+        required: false
+        default: "0"
+      failed:
+        description: Failed count
+        required: false
+        default: "0"
+      skipped:
+        description: Skipped count
+        required: false
+        default: "0"
+      durationMs:
+        description: Duration in ms
+        required: false
+        default: "0"
+      runUrl:
+        description: GitHub Actions run URL
+        required: false
+      reportUrl:
+        description: Playwright HTML report URL
+        required: false
+
+# cart_lge 테스트 종료 후 이 워크플로를 호출하면 게시판에 글이 추가됩니다.
+# curl -X POST \
+#   -H "Authorization: Bearer $PORTFOLIO_PAT" \
+#   -H "Accept: application/vnd.github+json" \
+#   https://api.github.com/repos/<owner>/<portfolio-repo>/dispatches \
+#   -d '{"event_type":"cart-test-result","client_payload":{"status":"pass","title":"Cart E2E","passed":12,"failed":0,"runUrl":"https://github.com/SunKiteKim/cart_lge/actions/runs/1"}}'
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Append report post
+        env:
+          REPORT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
+          INPUT_STATUS: ${{ github.event.inputs.status }}
+          INPUT_TITLE: ${{ github.event.inputs.title }}
+          INPUT_PASSED: ${{ github.event.inputs.passed }}
+          INPUT_FAILED: ${{ github.event.inputs.failed }}
+          INPUT_SKIPPED: ${{ github.event.inputs.skipped }}
+          INPUT_DURATION_MS: ${{ github.event.inputs.durationMs }}
+          INPUT_RUN_URL: ${{ github.event.inputs.runUrl }}
+          INPUT_REPORT_URL: ${{ github.event.inputs.reportUrl }}
+        run: node scripts/append-cart-report.mjs
+      - name: Commit board data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/cart-reports.json
+          git diff --cached --quiet && echo "No report changes" && exit 0
+          git commit -m "Add cart E2E report post"
+          git push

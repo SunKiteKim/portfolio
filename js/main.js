@@ -41,7 +41,8 @@
       if (el && el.offsetTop <= y) current = id;
     });
     setActive(current);
-    header?.classList.toggle("is-revealed", current !== "main");
+    const hasHome = Boolean(document.getElementById("main"));
+    header?.classList.toggle("is-revealed", !hasHome || current !== "main");
     const floated = window.scrollY > 240;
     topBtn?.classList.toggle("is-visible", floated);
     rail?.classList.toggle("is-visible", floated);

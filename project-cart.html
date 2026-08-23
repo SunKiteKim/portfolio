@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e131a">
+  <meta name="description" content="Cart E2E UI 및 금액 정합성 자동화 — 김혜연 포트폴리오">
+  <title>Cart E2E UI &amp; Consistency Automation — Kim's Portfolio</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/pipeline.css">
+</head>
+
+<body>
+  <header class="console-bar is-revealed">
+    <div class="console-bar__inner">
+      <p class="brand"><a href="./index.html#main"><span>//</span>Kim's Warranty</a></p>
+      <nav>
+        <a href="./index.html#main">Main</a>
+        <a class="is-active" href="./index.html#projects">Project</a>
+        <a href="./index.html#more-info">More info</a>
+      </nav>
+      <p class="live"><i></i>TestAutomation</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="project-detail" id="project">
+      <a class="back" href="./index.html#projects">← Project</a>
+      <header>
+        <span class="pill now">NOW</span>
+        <h1>Cart E2E UI &amp; Consistency Automation</h1>
+      </header>
+      <p class="role">Playwright · Cart domain</p>
+      <p class="summary">온라인 쇼핑몰 핵심 여정 자동화 및 금액 정합성 테스트</p>
+      <ul class="spec">
+        <li><strong>Framework:</strong> Playwright</li>
+        <li><strong>Language:</strong> TypeScript</li>
+        <li><strong>Pattern:</strong> Page Object Model</li>
+        <li><strong>CI/CD:</strong> GitHub Actions</li>
+        <li><strong>Target:</strong> nopCommerce Demo Store</li>
+        <li><strong>Test Type:</strong> E2E / Regression</li>
+      </ul>
+      <div class="project-actions">
+        <a class="btn-action btn-trigger" href="https://github.com/SunKiteKim/cart_lge/actions" target="_blank" rel="noreferrer">▶ Trigger</a>
+        <a class="btn-action btn-report" href="./project-cart-report.html">Report</a>
+      </div>
+      
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <span>KIM'S WARRANTY</span>
+  </footer>
+
+  <a class="top-btn" href="#project" aria-label="맨 위로">Top</a>
+  <script src="./js/main.js"></script>
+</body>
+
+</html>

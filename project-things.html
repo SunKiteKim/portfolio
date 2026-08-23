@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e131a">
+  <meta name="description" content="things — 포트폴리오용 오브제 이커머스 — 김혜연 포트폴리오">
+  <title>things — Kim's Portfolio</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/pipeline.css">
+</head>
+
+<body>
+  <header class="console-bar is-revealed">
+    <div class="console-bar__inner">
+      <p class="brand"><a href="./index.html#main"><span>//</span>Kim's Warranty</a></p>
+      <nav>
+        <a href="./index.html#main">Main</a>
+        <a class="is-active" href="./index.html#projects">Project</a>
+        <a href="./index.html#more-info">More info</a>
+      </nav>
+      <p class="live"><i></i>TestAutomation</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="project-detail" id="project">
+      <a class="back" href="./index.html#projects">← Project</a>
+      <header>
+        <span class="pill now">NOW</span>
+        <h1>things</h1>
+      </header>
+      <p class="role">Next.js · Commerce demo</p>
+      <p class="summary">사물을 고르는 일. 오브제 스토어 things — FO 쇼핑 여정과 Admin 운영 화면을 함께 만든 포트폴리오용 이커머스입니다.</p>
+      <ul class="spec">
+        <li><strong>Framework:</strong> Next.js 15 (App Router)</li>
+        <li><strong>Language:</strong> TypeScript</li>
+        <li><strong>UI:</strong> React 19 · Tailwind CSS</li>
+        <li><strong>Auth:</strong> NextAuth (이메일 / Google)</li>
+        <li><strong>Payments:</strong> Toss Payments (테스트 위젯 · 데모 결제)</li>
+        <li><strong>Data:</strong> Prisma · SQLite</li>
+        <li><strong>FO:</strong> 카테고리 · 검색 · 장바구니 · 주문서 · 주문조회</li>
+        <li><strong>Admin:</strong> 회원 · 상품 · 전시 · 쿠폰 · 주문 관리</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <span>KIM'S WARRANTY</span>
+  </footer>
+
+  <a class="top-btn" href="#project" aria-label="맨 위로">Top</a>
+  <script src="./js/main.js"></script>
+</body>
+
+</html>

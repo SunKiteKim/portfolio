@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e131a">
+  <meta name="description" content="Cart E2E 테스트 리포트 게시판 — 김혜연 포트폴리오">
+  <title>Cart E2E Reports — Kim's Portfolio</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/pipeline.css">
+</head>
+
+<body>
+  <header class="console-bar is-revealed">
+    <div class="console-bar__inner">
+      <p class="brand"><a href="./index.html#main"><span>//</span>Kim's Warranty</a></p>
+      <nav>
+        <a href="./index.html#main">Main</a>
+        <a class="is-active" href="./index.html#projects">Project</a>
+        <a href="./index.html#more-info">More info</a>
+      </nav>
+      <p class="live"><i></i>TestAutomation</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="project-detail report-page" id="report">
+      <a class="back" href="./project-cart.html">← Cart E2E</a>
+      <header>
+        <span class="pill info">REPORT</span>
+        <h1>Test Reports</h1>
+      </header>
+      <p class="summary">Playwright 테스트가 끝나면 결과가 자동으로 이 게시판에 올라옵니다. 가장 최근 실행이 맨 위입니다.</p>
+      <p class="board-meta" id="board-meta"></p>
+      <div id="report-board"></div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <span>KIM'S WARRANTY</span>
+  </footer>
+
+  <a class="top-btn" href="#report" aria-label="맨 위로">Top</a>
+  <script src="./js/main.js"></script>
+  <script src="./js/reports.js"></script>
+</body>
+
+</html>
