@@ -43,6 +43,21 @@ test('runner UI: progress, failed report, retry, download and mobile layout', as
     await page.waitForFunction(() => document.getElementById('run-state').textContent === 'DISCONNECTED');
     assert.equal(await page.locator('#test-results').isVisible(), false);
     assert.equal(await page.locator('#test-trigger').isEnabled(), true);
+    await page.unroute('**/api/runs**');
+    let cloudReads = 0;
+    await page.route('**/api/runs**', route => {
+      assert.equal(route.request().method(), 'GET');
+      cloudReads++;
+      return route.fulfill({ json: { ...run, id: '123', pollIntervalMs: 25,
+        status: cloudReads === 1 ? 'queued' : 'passed',
+        cases: [{ name: 'Cloud test', status: cloudReads === 1 ? 'pending' : 'passed' }],
+        logs: [{ time: run.startedAt, message: cloudReads === 1 ? 'Runner 대기' : 'Cloud test 완료' }] } });
+    });
+    await page.goto('http://127.0.0.1:3011/project-cart.html?run=123');
+    await page.locator('#test-results').waitFor();
+    assert.match(await page.locator('#result-meta').innerText(), /PASSED/);
+    assert.match(await page.locator('#test-log').innerText(), /Cloud test 완료/);
+    assert.ok(cloudReads >= 2);
     const forbidden = await fetch('http://127.0.0.1:3011/api/runs', { method: 'POST', headers: { Origin: 'https://untrusted.example', 'Content-Type': 'application/json' }, body: '{}' });
     assert.equal(forbidden.status, 403);
     assert.equal((await fetch('http://127.0.0.1:3011/server/index.mjs')).status, 404);

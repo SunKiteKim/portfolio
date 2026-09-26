@@ -1,0 +1,37 @@
+name: things E2E
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: things-e2e
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run things journey and publish progress
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPOSITORY: ${{ github.repository }}
+        run: node scripts/run-cloud.mjs
+      - name: Keep report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: things-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: test-results/cloud-report.json
+          if-no-files-found: ignore
+          retention-days: 30

@@ -21,6 +21,16 @@ http://localhost:3000/project-cart.html 에서 **Trigger**를 누릅니다.
 
 ## 배포
 
+### Vercel + GitHub Actions (권장)
+
+`vercel.json`, `api/`, `.github/workflows/things-e2e.yml`이 포함되어 있습니다.
+Vercel은 실행 요청과 조회만 처리하고 Playwright는 GitHub runner에서 실행합니다.
+진행 로그와 결과는 `test-reports` 브랜치에 저장하며 별도의 유료 디스크가 필요하지 않습니다.
+계정 연결과 환경 변수 설정은 [Vercel 배포 안내](docs/vercel-deployment.md)를 참고하세요.
+기존 Things Vercel 프로젝트와 분리하여 portfolio 저장소를 가져옵니다.
+
+### 기존 Node.js 서버 배포
+
 GitHub Pages 같은 정적 호스팅만으로는 Playwright를 실행할 수 없습니다.
 Node.js와 Chromium을 실행할 서버에 이 프로젝트를 배포하세요.
 Linux 서버에서는 `npx playwright install --with-deps chromium`으로 브라우저 의존성도 설치합니다.

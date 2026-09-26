@@ -1,6 +1,7 @@
 import { chromium, expect } from '@playwright/test';
 
-export const cases = ['스토어 접속 및 상품 목록', '상품 상세 · 구매 가능 여부', '장바구니 담기 · 상품 확인', '수량 변경 · 금액 정합성', '새로고침 · 장바구니 유지', '상품 삭제 · 빈 장바구니'];
+import { cases } from '../lib/cases.mjs';
+export { cases };
 const send = (event) => process.send?.(event);
 let browser;
 let failed = false;

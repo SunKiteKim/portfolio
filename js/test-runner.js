@@ -3,7 +3,7 @@
   const trigger = $('test-trigger');
   if (!trigger) return;
   const base = (document.querySelector('meta[name="test-api-base"]')?.content || '').replace(/\/$/, '');
-  let current, logCount = 0, busy = false;
+  let current, logCount = 0, busy = false, previousLogs = [];
   const duration = ms => `${((ms || 0) / 1000).toFixed(1)}s`;
   const appendLog = entry => {
     const line = document.createElement('div');
@@ -17,7 +17,7 @@
     if (follow) log.scrollTop = log.scrollHeight;
   };
   const request = async (url, options = {}) => {
-    const response = await fetch(`${base}${url}`, { ...options, signal: AbortSignal.timeout(12000), cache: 'no-store' });
+    const response = await fetch(`${base}${url}`, { ...options, signal: AbortSignal.timeout(30000), cache: 'no-store' });
     const type = response.headers.get('content-type') || '';
     if (!type.includes('application/json')) throw new Error('테스트 실행 서버에 연결할 수 없습니다. 서버 주소와 실행 상태를 확인해 주세요.');
     const data = await response.json();
@@ -30,14 +30,18 @@
   };
   function render(run) {
     current = run;
+    if (previousLogs.some((entry, index) => JSON.stringify(entry) !== JSON.stringify(run.logs[index]))) {
+      $('test-log').replaceChildren(); logCount = 0;
+    }
     run.logs.slice(logCount).forEach(appendLog);
     logCount = run.logs.length;
+    previousLogs = run.logs;
     $('run-state').textContent = run.status.toUpperCase();
     $('run-state').style.color = ['failed', 'error'].includes(run.status) ? 'var(--fail)' : 'var(--pass)';
     const done = run.cases.filter(item => ['passed', 'failed', 'skipped'].includes(item.status)).length;
     $('run-progress').value = done;
     $('run-progress').max = run.cases.length;
-    $('run-progress-text').textContent = `${done} / ${run.cases.length} checks completed`;
+    $('run-progress-text').textContent = run.phase || `${done} / ${run.cases.length} checks completed`;
     $('run-elapsed').textContent = duration(run.durationMs || Date.now() - Date.parse(run.startedAt));
   }
   function report(run) {
@@ -57,6 +61,11 @@
     }
     $('result-error').hidden = !(run.error || run.historyError);
     $('result-error').textContent = [run.error, run.historyError].filter(Boolean).join('\n');
+    const runLink = $('github-run-link');
+    if (runLink) {
+      runLink.hidden = !run.runUrl;
+      if (run.runUrl?.startsWith('https://github.com/')) runLink.href = run.runUrl;
+    }
     $('case-results').replaceChildren();
     for (const item of run.cases) {
       const row = document.createElement('div'); row.className = 'case-result';
@@ -76,7 +85,7 @@
     if (busy) return;
     busy = true; trigger.disabled = true; trigger.textContent = '◌ Running…';
     $('test-terminal').hidden = false; $('test-results').hidden = true; $('test-report-link').disabled = true;
-    $('test-log').replaceChildren(); logCount = 0;
+    $('test-log').replaceChildren(); logCount = 0; previousLogs = [];
     $('run-state').textContent = 'CONNECTING'; $('run-progress').value = 0;
     $('run-elapsed').textContent = '0.0s'; $('run-progress-text').textContent = '실행 준비 중';
     try {
@@ -85,8 +94,8 @@
       let failures = 0;
       while (true) {
         render(run);
-        if (run.status !== 'running') break;
-        await new Promise(resolve => setTimeout(resolve, 800));
+        if (!['running', 'queued'].includes(run.status)) break;
+        await new Promise(resolve => setTimeout(resolve, run.pollIntervalMs || 800));
         try { run = await request(`/api/runs/${run.id}`); failures = 0; }
         catch (error) { if (++failures >= 3) throw error; }
       }
@@ -108,6 +117,6 @@
     const a = document.createElement('a'); a.href = url; a.download = `things-${current.id}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
   const selected = new URLSearchParams(location.search).get('run');
-  if (selected && /^[a-f0-9-]{36}$/.test(selected)) execute(selected);
+  if (selected && /^(?:[a-f0-9-]{36}|\d{1,20})$/.test(selected)) execute(selected);
   else { try { const id = sessionStorage.getItem('things-run'); if (id) execute(id); } catch {} }
 })();

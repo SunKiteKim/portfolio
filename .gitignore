@@ -6,3 +6,6 @@ Thumbs.db
 node_modules/
 test-results/
 storage/
+public/
+.vercel/
+.env*
