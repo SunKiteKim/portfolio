@@ -41,7 +41,7 @@
           badge.textContent = run.status.toUpperCase(); cell('', '').append(badge);
           const link = document.createElement('a');
           link.href = `./project-cart.html?run=${encodeURIComponent(run.id)}`;
-          link.textContent = `things · Cart E2E · ${run.id.slice(0, 8)}`;
+          link.textContent = `things E2E Test · ${run.id.slice(0, 8)}`;
           cell('', 'title').append(link);
           cell(`${run.passed} passed / ${run.failed} failed / ${run.skipped} skipped`, 'result');
           cell(`${(run.durationMs / 1000).toFixed(1)}s`, 'result');
