@@ -83,7 +83,7 @@
   const forget = () => { try { sessionStorage.removeItem('things-run'); } catch {} };
   async function execute(id) {
     if (busy) return;
-    busy = true; trigger.disabled = true; trigger.textContent = '◌ Running…';
+    busy = true; trigger.disabled = true; trigger.textContent = '◌ 테스트 실행 중…';
     $('test-terminal').hidden = false; $('test-results').hidden = true; $('test-report-link').disabled = true;
     $('test-log').replaceChildren(); logCount = 0; previousLogs = [];
     $('run-state').textContent = 'CONNECTING'; $('run-progress').value = 0;
@@ -103,8 +103,8 @@
     } catch (error) {
       $('run-state').textContent = 'DISCONNECTED';
       $('run-progress-text').textContent = '연결 실패 · 다시 시도해 주세요';
-      appendLog({ time: new Date().toISOString(), level: 'error', message: `${error.message}\n실행 결과를 확인하지 못했습니다. Trigger로 다시 연결할 수 있습니다.` });
-    } finally { busy = false; trigger.disabled = false; trigger.textContent = '↻ Trigger'; }
+      appendLog({ time: new Date().toISOString(), level: 'error', message: `${error.message}\n실행 결과를 확인하지 못했습니다. ‘테스트 실행하기’를 눌러 다시 연결할 수 있습니다.` });
+    } finally { busy = false; trigger.disabled = false; trigger.textContent = '↻ 테스트 실행하기'; }
   }
   trigger.addEventListener('click', () => {
     let id; try { id = sessionStorage.getItem('things-run'); } catch {}
