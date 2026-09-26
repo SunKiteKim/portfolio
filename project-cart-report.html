@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0e131a">
   <meta name="description" content="Cart E2E 테스트 리포트 게시판 — 김혜연 포트폴리오">
-  <title>Cart E2E Reports — Kim's Portfolio</title>
+  <title>Test History — Kim's Portfolio</title>
+  <meta name="test-api-base" content="">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,12 +34,14 @@
     <section class="project-detail report-page" id="report">
       <a class="back" href="./project-cart.html">← Cart E2E</a>
       <header>
-        <span class="pill info">REPORT</span>
-        <h1>Test Reports</h1>
+        <span class="pill info">HISTORY</span>
+        <h1>Test History</h1>
       </header>
-      <p class="summary">Playwright 테스트가 끝나면 결과가 자동으로 이 게시판에 올라옵니다. 가장 최근 실행이 맨 위입니다.</p>
+      <p class="summary">things 테스트의 지난 실행 결과입니다. 완료된 결과가 자동으로 쌓이며, 제목을 누르면 상세 리포트를 확인할 수 있습니다.</p>
+      <div class="project-actions"><button class="btn-action btn-report" id="refresh-history" type="button">↻ 새로고침</button></div>
       <p class="board-meta" id="board-meta"></p>
-      <div id="report-board"></div>
+      <div id="report-board" aria-live="polite"></div>
+      <div class="project-actions"><button class="btn-action btn-report" id="history-prev" type="button" disabled>← 이전</button><span id="history-page"></span><button class="btn-action btn-report" id="history-next" type="button" disabled>다음 →</button></div>
     </section>
   </main>
 

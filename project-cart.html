@@ -14,6 +14,8 @@
     href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="./css/pipeline.css">
+  <link rel="stylesheet" href="./css/test-runner.css">
+  <meta name="test-api-base" content="">
 </head>
 
 <body>
@@ -30,7 +32,9 @@
   </header>
 
   <main>
-    <section class="project-detail" id="project">
+    <section class="project-detail automation-detail" id="project">
+      <div class="automation-layout">
+      <div class="automation-intro">
       <a class="back" href="./index.html#projects">← Project</a>
       <header>
         <span class="pill now">NOW</span>
@@ -40,17 +44,35 @@
       <p class="summary">온라인 쇼핑몰 핵심 여정 자동화 및 금액 정합성 테스트</p>
       <ul class="spec">
         <li><strong>Framework:</strong> Playwright</li>
-        <li><strong>Language:</strong> TypeScript</li>
-        <li><strong>Pattern:</strong> Page Object Model</li>
-        <li><strong>CI/CD:</strong> GitHub Actions</li>
-        <li><strong>Target:</strong> nopCommerce Demo Store</li>
+        <li><strong>Language:</strong> JavaScript</li>
+        <li><strong>Journey:</strong> 상품 탐색 → 장바구니 → 금액 검증</li>
+        <li><strong>Runner:</strong> Chromium · Live execution</li>
+        <li><strong>Target:</strong> <a href="https://www.things4demo.site/" target="_blank" rel="noreferrer">things</a></li>
         <li><strong>Test Type:</strong> E2E / Regression</li>
       </ul>
       <div class="project-actions">
-        <a class="btn-action btn-trigger" href="https://github.com/SunKiteKim/cart_lge/actions" target="_blank" rel="noreferrer">▶ Trigger</a>
-        <a class="btn-action btn-report" href="./project-cart-report.html">Report</a>
+        <button class="btn-action btn-trigger" id="test-trigger" type="button">▶ Trigger</button>
+        <button class="btn-action btn-report" id="test-report-link" type="button" disabled>Report ↗</button>
+        <a class="btn-action btn-report" href="./project-cart-report.html" aria-label="History · 지난 테스트 결과 보기">History ↗</a>
       </div>
-      
+      <p class="runner-hint">Trigger를 누르면 things의 실제 쇼핑 여정을 테스트합니다.</p>
+      </div>
+      <aside class="test-terminal" id="test-terminal" aria-label="실시간 테스트 터미널" hidden>
+        <div class="terminal-bar"><span class="window-dots" aria-hidden="true">● ● ●</span><span>things / test runner</span><span id="run-state">CONNECTING</span></div>
+        <div class="terminal-command"><span>❯</span> run things:cart --browser chromium</div>
+        <div class="terminal-log" id="test-log" role="log" aria-live="polite" aria-relevant="additions" tabindex="0"></div>
+        <div class="terminal-bottom"><span id="run-progress-text">실행 준비 중</span><time id="run-elapsed">0.0s</time></div>
+        <progress id="run-progress" max="6" value="0" aria-label="테스트 진행률"></progress>
+      </aside>
+      </div>
+      <section class="test-results" id="test-results" aria-labelledby="results-title" tabindex="-1" hidden>
+        <div class="results-heading"><div><p class="results-eyebrow">EXECUTION REPORT</p><h2 id="results-title">테스트 결과</h2></div><button type="button" class="btn-action btn-report" id="download-report">↓ JSON</button></div>
+        <p id="result-meta"></p>
+        <div class="result-stats" id="result-stats"></div>
+        <p id="result-error" role="status" hidden></p>
+        <div class="case-results" id="case-results"></div>
+        <p class="runner-hint">독립된 브라우저 세션 · 실제 결제 및 주문 생성 없음</p>
+      </section>
     </section>
   </main>
 
@@ -60,6 +82,7 @@
 
   <a class="top-btn" href="#project" aria-label="맨 위로">Top</a>
   <script src="./js/main.js"></script>
+  <script src="./js/test-runner.js"></script>
 </body>
 
 </html>
