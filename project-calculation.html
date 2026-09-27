@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e131a">
+  <meta name="description" content="쇼핑몰 계산 로직 정합성 — 기본 금액 계산과 쿠폰 적용 계산 검증 — 김혜연 포트폴리오">
+  <title>쇼핑몰 계산 로직 정합성 — Kim's Portfolio</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/pipeline.css">
+  <link rel="stylesheet" href="./css/test-runner.css">
+</head>
+<body>
+  <header class="console-bar is-revealed">
+    <div class="console-bar__inner">
+      <p class="brand"><a href="./index.html#main"><span>//</span>Kim's Warranty</a></p>
+      <nav>
+        <a href="./index.html#main">Main</a>
+        <a class="is-active" href="./index.html#projects">Project</a>
+        <a href="./index.html#more-info">More info</a>
+      </nav>
+      <p class="live"><i></i>TestAutomation</p>
+    </div>
+  </header>
+  <main>
+    <section class="project-detail" id="project">
+      <a class="back" href="./index.html#projects">← Project</a>
+      <header>
+        <span class="pill now">NOW</span>
+        <h1>쇼핑몰 계산 로직 정합성</h1>
+      </header>
+      <p class="role">Commerce · Calculation Validation</p>
+      <p class="summary">기본 금액 계산부터 쿠폰 적용까지, 쇼핑몰 계산 로직의 정합성을 검증하는 프로젝트입니다. 계산 결과가 기대한 금액과 일치하는지 확인합니다.</p>
+      <ul class="spec">
+        <li><strong>검증 대상:</strong> 쇼핑몰 계산 로직</li>
+        <li><strong>기본 계산:</strong> 상품 금액과 수량에 따른 금액 계산 검증</li>
+        <li><strong>쿠폰 계산:</strong> 쿠폰 적용에 따른 할인 금액과 최종 금액 검증</li>
+      </ul>
+      <div class="project-actions" aria-describedby="calculation-status">
+        <button class="btn-action btn-trigger" type="button" disabled>▶ 테스트 실행하기</button>
+        <button class="btn-action btn-report" type="button" disabled>Report ↗</button>
+        <button class="btn-action btn-report" type="button" disabled>History ↗</button>
+      </div>
+      <p class="runner-hint" id="calculation-status">계산 로직 정합성 테스트의 실행 및 리포트·이력 조회 기능은 준비 중입니다.</p>
+    </section>
+  </main>
+  <footer class="site-foot"><span>KIM'S WARRANTY</span></footer>
+  <a class="top-btn" href="#project" aria-label="맨 위로">Top</a>
+  <script src="./js/main.js"></script>
+</body>
+</html>
